@@ -9,21 +9,19 @@
     $api = new API();
     $installations = $api->installationsGet();
     $installations = json_decode($installations, true);
-    
 ?>
-
-        <div style="width: 49%; display: inline-block; text-align: center; vertical-align: top;">
+        <div class="chart-container">
             <h2>Installations par année</h2>
-            <canvas id="barChart" width="200" height="200"></canvas>
+            <canvas id="barChart"></canvas>
         </div>
-        <div style="width: 49%; display: inline-block; text-align: center; vertical-align: top;">
+        <div class="chart-container">
             <h2>Répartition des capacités par propriétaire</h2>
-            <canvas id="pieChart" width="200" height="200"></canvas>
-            </div>
-        <div style="width: 100%; display: inline-block; text-align: center; vertical-align: top;">
+            <canvas id="pieChart"></canvas>
+        </div>
+        <div class="full-width-container">
             <h2>Liste des installations</h2>
+        </div>
         
-        <div id="response"></div>
         <?php 
             if (is_array($installations) && !empty($installations)) {
                 ?>

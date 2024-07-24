@@ -109,14 +109,12 @@ $(document).ready(function() {
     });
 
     fetchPieChartData().done(function(data) {
-        console.log("Pie Chart Data:", data);  // Log data to inspect its structure
         updatePieChart(pieChartInstance, data);
     }).fail(function(jqXHR, textStatus, errorThrown) {
         console.error('Failed to fetch Pie Chart data:', textStatus, errorThrown);
     });
 
     fetchBarChartData().done(function(data) {
-        console.log("Bar Chart Data:", data);  // Log data to inspect its structure
         updateBarChart(barChartInstance, data);
     }).fail(function(jqXHR, textStatus, errorThrown) {
         console.error('Failed to fetch Bar Chart data:', textStatus, errorThrown);

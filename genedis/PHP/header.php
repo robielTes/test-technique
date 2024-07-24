@@ -11,6 +11,35 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="js/charts.js" defer></script>
 
+        <style>
+        /* CSS styles for layout and canvas sizing */
+        .chart-container {
+            width: 49%;
+            display: inline-block;
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .chart-container canvas {
+            width: 200px; 
+            height: 200px; 
+        }
+
+        .full-width-container {
+            width: 100%;
+            text-align: center;
+            vertical-align: top;
+        }
+
+        /* Make sure the canvas size is responsive */
+        @media (max-width: 768px) {
+            .chart-container canvas {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+
     </head>
     <body>
         <span style="float: right;"><i>Version de l'API : v1.0.0</i></span>
