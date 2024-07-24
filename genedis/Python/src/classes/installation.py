@@ -23,16 +23,33 @@ class Installation:
         listeInstallation = list()
 
         # Renvoyer la liste des installations et de leurs propriétaires triée par commune puis par capacité
-
+        _dbSqlite = self._bdSqlite.cursor()
+        _dbSqlite.execute("SELECT installations.id, installations.nom, installations.commune, installations.capacite, installations.anneeInstallation, proprietaires.nom  FROM installations INNER JOIN proprietaires ON installations.idProprietaire = proprietaires.id ORDER BY installations.commune, installations.capacite")
+        listeInstallation = _dbSqlite.fetchall()
+        _dbSqlite.close()
         return(listeInstallation)
 
-    def listeParProprietaire(self):
+    def listeParProprietaire(self, idProprietaire):
+        
+        print(idProprietaire)
         listeInstallationParProprietaire = list()
 
         # Renvoyer la liste des installations d'un proprietaire en particulier
+        _dbSqlite = self._bdSqlite.cursor()
+        _dbSqlite.execute("SELECT *  FROM installations WHERE idProprietaire = ?", (idProprietaire,))
+        listeInstallationParProprietaire = _dbSqlite.fetchall()
+        _dbSqlite.close()
 
         return(listeInstallationParProprietaire)
 
-    def creer(self):
-
-        return(retour)
+    def creer(self,nom, commune, capacite, anneeInstallation, idProprietaire):
+                
+        try:
+            _dbSqlite = self._bdSqlite.cursor()
+            _dbSqlite.execute("INSERT INTO installations (nom, commune, capacite, anneeInstallation, idProprietaire) VALUES (?, ?, ?, ?, ?)", (nom, commune, capacite, anneeInstallation, idProprietaire))
+            self._bdSqlite.commit()
+            return {"message": "Success"}
+        except Exception as e:
+            return {'error': str(e) }
+        finally:
+            _dbSqlite.close()

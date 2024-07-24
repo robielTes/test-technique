@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
     <head>
         <title>Test Technique - {Nom du candidat}</title>
         <meta charset="utf-8">
