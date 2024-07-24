@@ -55,6 +55,20 @@ class API {
         return $response;
     }
 
+    //installations by year
+    public function installationsAnneeInstallationGet() {
+        $url = 'http://' . $_SERVER['SERVER_NAME'] . ':8081/installations/anneeInstallation';
+        $response = file_get_contents($url);
+        return $response;
+    }
+
+    //installations by capacity
+    public function getInstallationsByCapacity() {
+        $url = 'http://' . $_SERVER['SERVER_NAME'] . ':8081/installations/capacite';
+        $response = file_get_contents($url);
+        return $response;
+    }
+
 
 }
 
