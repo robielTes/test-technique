@@ -3,7 +3,7 @@
 class API {
 
     // get Installations
-    public function getInstallations() {
+    public function installationsGet() {
         $url = 'http://' . $_SERVER['SERVER_NAME'] . ':8081/installations';
         $response = file_get_contents($url);
         return $response;
@@ -11,21 +11,21 @@ class API {
     }
 
     // get Installations with a property id
-    public function getInstallationsByProperty($id) {
+    public function installationsParProprietaireGet($id) {
         $url = 'http://' . $_SERVER['SERVER_NAME'] . ':8081/installations/' . $id;
         $response = file_get_contents($url);
         return $response;
     }
 
     // get properties
-    public function getProperties() {
+    public function proprietairesGet() {
         $url = 'http://' . $_SERVER['SERVER_NAME'] . ':8081/proprietaires';
         $response = file_get_contents($url);
         return $response;
     }
 
     // create an installation
-    public function createInstallation($nom, $commune, $capacite, $anneeInstallation, $idProprietaire) {
+    public function createInstallationPost($nom, $commune, $capacite, $anneeInstallation, $idProprietaire) {
         $url = 'http://' . $_SERVER['SERVER_NAME'] . ':8081/installations';
         $data = array('nom' => $nom, 'commune' => $commune, 'capacite' => $capacite, 'anneeInstallation' => $anneeInstallation, 'idProprietaire' => $idProprietaire);
         $options = array(
@@ -40,7 +40,7 @@ class API {
         return $response;
     }
     //create a property
-    public function createProperty($nom) {
+    public function createPropertyPost($nom) {
         $url = 'http://' . $_SERVER['SERVER_NAME'] . ':8081/proprietaires';
         $data = array('nom' => $nom);
         $options = array(

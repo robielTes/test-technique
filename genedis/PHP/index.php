@@ -3,7 +3,7 @@
     include 'header.php';
 
     $api = new API();
-    $installations = $api->getInstallations();
+    $installations = $api->installationsGet();
     $installations = json_decode($installations, true);
     
 ?>

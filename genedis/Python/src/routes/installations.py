@@ -67,7 +67,7 @@ def installationsPost():
     return response
 
 @app.route('/installations/capacite', methods=['GET'])
-def installationsCapaciteParProprietaire():
+def installationsCapaciteParProprietaireGet():
     installations = Installation()
     sumCapacite = installations.installationCapaciteParProprietaire()
 
@@ -76,7 +76,7 @@ def installationsCapaciteParProprietaire():
     return response
 
 @app.route('/installations/anneeInstallation', methods=['GET'])
-def installationsAnneeInstallation():
+def installationsAnneeInstallationGet():
     installations = Installation()
     anneeInstallation = installations.InstallationParAnnee()
 
