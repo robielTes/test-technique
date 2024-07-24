@@ -4,6 +4,8 @@
 import os
 import configparser
 from flask import Flask, request, render_template
+from flask_cors import CORS
+
 
 # Chemin de l'API
 pathApi = os.path.dirname(os.path.realpath(__file__))
@@ -14,6 +16,7 @@ configApi.read(pathApi + '/../conf/config.ini')
 
 # Création API
 app = Flask(__name__)
+CORS(app)
 
 import routes.version
 import routes.installations

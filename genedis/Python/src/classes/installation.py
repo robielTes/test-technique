@@ -31,7 +31,6 @@ class Installation:
 
     def listeParProprietaire(self, idProprietaire):
         
-        print(idProprietaire)
         listeInstallationParProprietaire = list()
 
         # Renvoyer la liste des installations d'un proprietaire en particulier
@@ -53,3 +52,27 @@ class Installation:
             return {'error': str(e) }
         finally:
             _dbSqlite.close()
+            
+    
+    def installationCapaciteParProprietaire(self):
+        sumCapacite = list()
+        _dbSqlite = self._bdSqlite.cursor()
+        _dbSqlite.execute("SELECT proprietaires.nom, SUM(installations.capacite) FROM installations INNER JOIN proprietaires ON installations.idProprietaire = proprietaires.id GROUP BY proprietaires.nom")
+        sumCapacite = _dbSqlite.fetchall()
+        _dbSqlite.close()
+        return(sumCapacite)
+    
+
+    def InstallationParAnnee(self):
+        countInstallationParAnnee = list()
+        _dbSqlite = self._bdSqlite.cursor()
+        _dbSqlite.execute("SELECT anneeInstallation, count(*) FROM installations GROUP BY anneeInstallation")
+        results = _dbSqlite.fetchall()
+        
+        for result in results:
+            anneeInstallation = result[0].replace("T.A. ", "") 
+            count = result[1]
+            countInstallationParAnnee.append((anneeInstallation, count))
+        
+        _dbSqlite.close()
+        return(countInstallationParAnnee)
