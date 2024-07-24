@@ -65,3 +65,12 @@ def installationsPost():
     response = make_response(json.dumps(installationsPost), 200)
     response.headers["Content-Type"] = "text/json; charset=utf-8"
     return response
+
+@app.route('/installations/capacite', methods=['GET'])
+def installationsCapaciteParProprietaire():
+    installations = Installation()
+    sumCapacite = installations.installationCapaciteParProprietaire()
+
+    response = make_response(json.dumps(sumCapacite), 200)
+    response.headers["Content-Type"] = "text/json; charset=utf-8"
+    return response

@@ -8,7 +8,6 @@
     
 ?>
 
-
         <div style="width: 49%; display: inline-block; text-align: center; vertical-align: top;">
             <h2>Installations par année</h2>
             <img src="media/bar.png" style="width: 670px;">
