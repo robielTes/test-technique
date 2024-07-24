@@ -74,3 +74,12 @@ def installationsCapaciteParProprietaire():
     response = make_response(json.dumps(sumCapacite), 200)
     response.headers["Content-Type"] = "text/json; charset=utf-8"
     return response
+
+@app.route('/installations/anneeInstallation', methods=['GET'])
+def installationsAnneeInstallation():
+    installations = Installation()
+    anneeInstallation = installations.InstallationParAnnee()
+
+    response = make_response(json.dumps(anneeInstallation), 200)
+    response.headers["Content-Type"] = "text/json; charset=utf-8"
+    return response
