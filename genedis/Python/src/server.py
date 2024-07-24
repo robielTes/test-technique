@@ -17,6 +17,8 @@ app = Flask(__name__)
 
 import routes.version
 import routes.installations
+import routes.proprietaires
+
 
 # Exécution et lancement du serveur
 if __name__ == '__main__':

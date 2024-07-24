@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # -*-coding:UTF-8 -*
 
-from flask import make_response
+from flask import make_response, request
 import configparser
 import os
 import time
@@ -29,9 +29,21 @@ def proprietairesGet(*args, **kwargs):
     return response
 
 @app.route('/proprietaires', methods=['POST'])
-def proprietairesPost(*args, **kwargs):
+def proprietairesPost():
+    nom = request.form['nom']
 
-    # Récupérer les arguments nécessaires à la création d'une nouvelle installation
-    # Le propriétaire doit déjà exister
-
+    # Récupérer les arguments nécessaires à la création d'une nouvelle propriétaire
+    # Verifier si le propriétaire est déjà exister
+    
+    proprietaires = Proprietaire()
+    
+    proprietairesExist = proprietaires.exist(nom)
+    if(proprietairesExist):
+        response = make_response(json.dumps({"error": "Le propriétaire existe déjà"}), 400)
+        response.headers["Content-Type"] = "text/json; charset=utf-8"
+        return response
+    
+    proprietairesPost = proprietaires.creer(nom)
+    response = make_response(json.dumps(proprietairesPost), 200)
+    response.headers["Content-Type"] = "text/json; charset=utf-8"
     return response
