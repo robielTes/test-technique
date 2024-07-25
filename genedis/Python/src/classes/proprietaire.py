@@ -19,20 +19,21 @@ class Proprietaire:
 
         self._bdSqlite = sqlite3.connect(pathApi + '/../../data/dbInstallations.db')
 
+    # Récupération les listes des propriétaires
     def liste(self):
         listeInstallation = list()
 
         # Renvoyer la liste des proprietaires
         dbSqlite = self._bdSqlite.cursor()
-        dbSqlite.execute("SELECT * FROM proprietaires")
+        dbSqlite.execute("SELECT * FROM proprietaires") # Récupérer les propriétaires
         listeInstallation = dbSqlite.fetchall()
         dbSqlite.close()
         
         return(listeInstallation)
 
+    # Création d'un nouveau propriétaire par son nom
     def creer(self,nom):
-        print(nom)
-
+        
         try:
             _dbSqlite = self._bdSqlite.cursor()
             _dbSqlite.execute("INSERT INTO proprietaires (nom) VALUES (?)", (nom,))
@@ -43,7 +44,7 @@ class Proprietaire:
         finally:
             _dbSqlite.close()
             
-# function that true if the proprietaire exist by verifying either the id or the name
+    # Vérifier si le propriétaire existe déjà par son id ou son nom
     def exist(self, n):
         try:
             _dbSqlite = self._bdSqlite.cursor()

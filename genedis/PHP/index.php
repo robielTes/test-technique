@@ -1,14 +1,14 @@
 <?php
     require_once 'classes/API.php';
-    include 'header.php';
+    include 'header.php'; // Inclut le fichier header.php
 
     header("Access-Control-Allow-Origin: *"); // Permet les requêtes de n'importe quel domaine
     header("Access-Control-Allow-Methods: GET, POST, OPTIONS"); // Permet les méthodes HTTP spécifiées
     header("Access-Control-Allow-Headers: Content-Type"); 
 
-    $api = new API();
-    $installations = $api->installationsGet();
-    $installations = json_decode($installations, true);
+    $api = new API(); // Crée une instance de la classe API
+    $installations = $api->installationsGet(); // Récupère les listes des installations
+    $installations = json_decode($installations, true); // Décode le JSON en tableau associatif
 ?>
         <div class="chart-container">
             <h2>Installations par année</h2>
@@ -40,7 +40,7 @@
                     echo "<tr>";
                     $columnCount = 0;
                     foreach ($installation as $key => $value) {
-                        if ($columnCount !=0 && $columnCount != 4) {
+                        if ($columnCount !=0 && $columnCount != 4) { // Ne pas afficher l'id et l'année d'installation
                             echo "<td>" . htmlspecialchars($value) . "</td>";
                         }
                         $columnCount++;
@@ -53,6 +53,7 @@
                 echo "No properties found.";
             }
       
-include 'footer.php';
+
+include 'footer.php'; // Inclut le fichier footer.php
 ?>
 

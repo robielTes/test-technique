@@ -6,6 +6,7 @@ $(document).ready(function() {
     const installationsAnneeInstallationURL = `http://localhost:8081/installations/anneeInstallation`;
     const installationsByCapacityURL = `http://localhost:8081/installations/capacite`;
 
+    // Recuperation les installations par annee d'installation de l'API
     function fetchPieChartData() {
         return $.ajax({
             url: installationsAnneeInstallationURL,
@@ -14,6 +15,7 @@ $(document).ready(function() {
         });
     }
 
+    // Recuperation les installations par capacite de l'API
     function fetchBarChartData() {
         return $.ajax({
             url: installationsByCapacityURL,
@@ -22,13 +24,14 @@ $(document).ready(function() {
         });
     }
 
+    // Fonction pour transformer les donnees recues de l'API en format compatible avec les charts
     function transformData(rawData) {
         const labels = [];
         const values = [];
         
         rawData.forEach(item => {
-            labels.push(item[0]); // First element is the label
-            values.push(item[1]); // Second element is the value
+            labels.push(item[0]);
+            values.push(item[1]);
         });
         
         return {
@@ -37,6 +40,7 @@ $(document).ready(function() {
         };
     }
 
+    // Fonction pour mettre a jour les donnees du Pie Chart
     function updatePieChart(chart, data) {
         const transformedData = transformData(data);
         
@@ -49,6 +53,7 @@ $(document).ready(function() {
         }
     }
 
+    // Fonction pour mettre a jour les donnees du Bar Chart
     function updateBarChart(chart, data) {
         const transformedData = transformData(data);
         
@@ -61,12 +66,13 @@ $(document).ready(function() {
         }
     }
 
+    // Creation des instances des charts pie des listes des installations par annee d'installation 
     const pieChartInstance = new Chart(pieChart, {
         type: 'pie',
         data: {
             labels: [],
             datasets: [{
-                label: 'Installation Years',
+                label: 'Les listes des installations',
                 data: [],
                 backgroundColor: [
                     'rgb(255, 99, 132)',
@@ -80,13 +86,13 @@ $(document).ready(function() {
             }]
         },
     });
-
+    // Creation des instances des charts bar les capacites des installations par proprietaire
     const barChartInstance = new Chart(barChart, {
         type: 'bar',
         data: {
             labels: [],
             datasets: [{
-                label: 'Capacity of Installations',
+                label: 'les capacites des installations',
                 data: [],
                 borderWidth: 1,
                 backgroundColor: [
@@ -108,12 +114,14 @@ $(document).ready(function() {
         }
     });
 
+    // Appel des fonctions pour mettre a jour les donnees des charts pie 
     fetchPieChartData().done(function(data) {
         updatePieChart(pieChartInstance, data);
     }).fail(function(jqXHR, textStatus, errorThrown) {
         console.error('Failed to fetch Pie Chart data:', textStatus, errorThrown);
     });
 
+    // Appel des fonctions pour mettre a jour les donnees des charts bar
     fetchBarChartData().done(function(data) {
         updateBarChart(barChartInstance, data);
     }).fail(function(jqXHR, textStatus, errorThrown) {

@@ -2,7 +2,7 @@
 
 class API {
 
-    // get Installations
+    // recupere les listes des installations
     public function installationsGet() {
         $url = 'http://' . $_SERVER['SERVER_NAME'] . ':8081/installations';
         $response = file_get_contents($url);
@@ -10,21 +10,21 @@ class API {
 
     }
 
-    // get Installations with a property id
+    // recupere les installations par proprietaire
     public function installationsParProprietaireGet($id) {
         $url = 'http://' . $_SERVER['SERVER_NAME'] . ':8081/installations/' . $id;
         $response = file_get_contents($url);
         return $response;
     }
 
-    // get properties
+    // recupere les listes des proprietaires
     public function proprietairesGet() {
         $url = 'http://' . $_SERVER['SERVER_NAME'] . ':8081/proprietaires';
         $response = file_get_contents($url);
         return $response;
     }
 
-    // create an installation
+    // creation d'une nouvelle installation
     public function createInstallationPost($nom, $commune, $capacite, $anneeInstallation, $idProprietaire) {
         $url = 'http://' . $_SERVER['SERVER_NAME'] . ':8081/installations';
         $data = array('nom' => $nom, 'commune' => $commune, 'capacite' => $capacite, 'anneeInstallation' => $anneeInstallation, 'idProprietaire' => $idProprietaire);
@@ -39,7 +39,7 @@ class API {
         $response = file_get_contents($url, false, $context);
         return $response;
     }
-    //create a property
+    //creation d'un nouveau proprietaire
     public function createPropertyPost($nom) {
         $url = 'http://' . $_SERVER['SERVER_NAME'] . ':8081/proprietaires';
         $data = array('nom' => $nom);
@@ -55,15 +55,15 @@ class API {
         return $response;
     }
 
-    //installations by year
+    // recupere les installations par annee d'installation
     public function installationsAnneeInstallationGet() {
         $url = 'http://' . $_SERVER['SERVER_NAME'] . ':8081/installations/anneeInstallation';
         $response = file_get_contents($url);
         return $response;
     }
 
-    //installations by capacity
-    public function getInstallationsByCapacity() {
+    // recupere les capacites des installations par proprietaire
+    public function capacityInstallationsParProprietaireGet() {
         $url = 'http://' . $_SERVER['SERVER_NAME'] . ':8081/installations/capacite';
         $response = file_get_contents($url);
         return $response;

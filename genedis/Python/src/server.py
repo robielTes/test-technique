@@ -4,7 +4,7 @@
 import os
 import configparser
 from flask import Flask, request, render_template
-from flask_cors import CORS
+from flask_cors import CORS # Permet de gérer les problèmes de CORS (Cross-Origin Resource Sharing)
 
 
 # Chemin de l'API
@@ -18,6 +18,7 @@ configApi.read(pathApi + '/../conf/config.ini')
 app = Flask(__name__)
 CORS(app)
 
+# Import des routes
 import routes.version
 import routes.installations
 import routes.proprietaires

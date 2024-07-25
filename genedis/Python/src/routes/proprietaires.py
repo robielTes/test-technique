@@ -18,6 +18,7 @@ pathApi = os.path.dirname(os.path.realpath(__file__))
 configApi = configparser.ConfigParser()
 configApi.read(pathApi + '/../../conf/config.ini')
 
+# Récupération les listes des propriétaires
 @app.route('/proprietaires', methods=['GET'])
 def proprietairesGet(*args, **kwargs):
 
@@ -28,6 +29,7 @@ def proprietairesGet(*args, **kwargs):
     response.headers["Content-Type"] = "text/json; charset=utf-8"
     return response
 
+# Création d'un nouveau propriétaire
 @app.route('/proprietaires', methods=['POST'])
 def proprietairesPost():
     nom = request.form['nom']

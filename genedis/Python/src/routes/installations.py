@@ -29,6 +29,7 @@ def installationsGet(*args, **kwargs):
     response.headers["Content-Type"] = "text/json; charset=utf-8"
     return response
 
+# Récupération des installations par propriétaire
 @app.route('/installations/<int:parProprietaire>', methods=['GET'])
 def installationsParProprietaireGet(parProprietaire):
 
@@ -40,6 +41,7 @@ def installationsParProprietaireGet(parProprietaire):
     response.headers["Content-Type"] = "text/json; charset=utf-8"
     return response
 
+# Création d'une nouvelle installation
 @app.route('/installations/', methods=['POST'])
 def installationsPost():
     nom = request.form['nom']
@@ -66,6 +68,7 @@ def installationsPost():
     response.headers["Content-Type"] = "text/json; charset=utf-8"
     return response
 
+# Récupération des capacité des installations par propriétaire
 @app.route('/installations/capacite', methods=['GET'])
 def installationsCapaciteParProprietaireGet():
     installations = Installation()
@@ -75,6 +78,7 @@ def installationsCapaciteParProprietaireGet():
     response.headers["Content-Type"] = "text/json; charset=utf-8"
     return response
 
+# Récupération des installations par année d'installation
 @app.route('/installations/anneeInstallation', methods=['GET'])
 def installationsAnneeInstallationGet():
     installations = Installation()
