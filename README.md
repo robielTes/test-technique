@@ -1,1 +1,1 @@
-# Mnc_TEST
+# test-technique
